@@ -1,9 +1,9 @@
 Java Style Guide
 ================
 
-### Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+### *Any fool can write code that a computer can understand. Good programmers write code that humans can understand.*
 
-Martin Flower
+*Martin Flower*
 
 If you use IntelijIdea, most of points in this documentation can be done by use auto formatting, so do not forget to use this function
 --------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,6 @@ Table of contents
 -   [Be explicit about operator
     precedence](#be-explicit-about-operator-precedence)
 -   [Documentation](#documentation)
--   [Imports](#imports)
 -   [Use annotations wisely](#use-annotations-wisely)
 -   [Use interfaces](#use-interfaces)
 -   [Writing testable code](#writing-testable-code)
@@ -62,7 +61,6 @@ Table of contents
 -   [Don't Repeat Yourself](#dont-repeat-yourself-dry)
 -   [Manage threads properly](#manage-threads-properly)
 -   [Avoid unnecessary code](#avoid-unnecessary-code)
--   [The 'fast' implementation](#the-fast-implementation)
 
 Coding style
 ------------
@@ -87,7 +85,7 @@ There are generally two reasons to insert a line break:
 
 We use the "one true brace style"
 ([1TBS](http://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS)).
-Indent size is 2 columns. ``
+Indent size is 2 columns.
 
     -> Like this.
     if (x < 0) {
@@ -106,8 +104,6 @@ Indent size is 2 columns. ``
 
 #### Continuation indent is 4 columns. Nested continuations may add 4 columns or 2 at each level.
 
-``
-
     -> Bad.
     - Line breaks are arbitrary.
     - Scanning the code makes it difficult to piece the message together.
@@ -125,8 +121,6 @@ Indent size is 2 columns. ``
 
 #### Don't break up a statement unnecessarily.
 
-``
-
     -> Bad.
     final String value =
         otherValue;
@@ -135,8 +129,6 @@ Indent size is 2 columns. ``
     final String value = otherValue;
 
 #### Method declaration continuations.
-
-``
 
     -> Sub-optimal since line breaks are arbitrary and only filling lines.
     String downloadAnInternet(Internet internet, Tubes tubes,
@@ -184,8 +176,6 @@ Indent size is 2 columns. ``
 
 #### Chained method calls
 
-``
-
     -> Bad.
     - Line breaks are based on line length, not logic.
     Iterable<Module> modules = ImmutableList.<Module>builder().add(new LifecycleModule())
@@ -218,8 +208,6 @@ on a reasonably-high resolution display.
 
 #### Naming convention
 
-``
-
     -> UpperCamelCase for types.
     class Example {}
 
@@ -247,8 +235,6 @@ ordering (sections
 and
 [8.4.3](http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.4.3)).
 
-``
-
     -> Bad.
     final volatile private String value;
 
@@ -259,8 +245,6 @@ and
 
 Extremely short variable names should be reserved for instances like
 loop indices.
-
-``
 
     -> Bad.
     - Field names give little insight into what fields are used for.
@@ -280,8 +264,6 @@ loop indices.
 
 #### Include units in variable names
 
-``
-
     -> Bad.
     long pollInterval;
     int fileSize;
@@ -298,8 +280,6 @@ name.
 
 Avoid embedding the field type in the field name.
 
-``
-
     -> Bad.
     Map<Integer, User> idToUserMap;
     String valueString;
@@ -311,8 +291,6 @@ Avoid embedding the field type in the field name.
 Also avoid embedding scope information in a variable. Hierarchy-based
 naming suggests that a class is too complex and should be broken apart.
 
-``
-
     -> Bad.
     String _value;
     String mValue;
@@ -320,9 +298,7 @@ naming suggests that a class is too complex and should be broken apart.
     -> Good.
     String value;
 
-#### Space pad operators and equals.
-
-``
+#### Space pad operators and equals. {#space-pad-operators-and-equals}
 
     -> Bad.
     - This offers poor visual separation of operations.
@@ -338,8 +314,6 @@ Don't make your reader open the
 to confirm, if you expect a specific operation ordering, make it obvious
 with parenthesis.
 
-``
-
     -> Bad.
     return a << 8 * n + 1 | 0xFF;
 
@@ -351,8 +325,6 @@ Documentation
 
 The more visible a piece of code is (and by extension - the farther away
 consumers might be), the more documentation is needed.
-
-``
 
     -> Bad.
     /**
@@ -378,8 +350,6 @@ conceptual blanks in the API, and make it easier to quickly and
 *correctly* use your API. A thorough class doc usually has a one
 sentence summary and, if necessary, a more detailed explanation.
 
-``
-
     /**
      * An RPC equivalent of a unix pipe tee.  Any RPC sent to the tee input is guaranteed to have
      * been sent to both tee outputs before the call returns.
@@ -394,8 +364,6 @@ sentence summary and, if necessary, a more detailed explanation.
 
 A method doc should tell what the method *does*. Depending on the
 argument types, it may also be important to document input format.
-
-``
 
     -> Bad.
     - The doc tells nothing that the method declaration didn't.
@@ -435,8 +403,6 @@ We've all encountered frustration when dealing with other libraries, but
 ranting about it doesn't do you any favors. Suppress the expletives and
 get to the point.
 
-``
-
     -> Bad.
     I hate xml/soap so much, why can't it do this for me!?
     try {
@@ -454,8 +420,6 @@ get to the point.
     }
 
 #### Don't document overriding methods (usually)
-
-``
 
     interface Database {
       /**
@@ -518,8 +482,6 @@ return value may be `null`, be explicit about it by marking
 [[@Nullable]](http://code.google.com/p/jsr-305/source/browse/trunk/ri/src/main/java/javax/annotation/Nullable.java?r=24)
 This is advisable even for fields/methods with private visibility.
 
-``
-
     class Database {
       @Nullable
       private Connection connection;
@@ -545,8 +507,6 @@ to indicate the purpose for visibility.
 Constants are a great example of things that are frequently exposed in
 this way.
 
-``
-
     -> Bad.
     - Any adjustments to field names need to be duplicated in the test.
     class ConfigReader {
@@ -567,7 +527,8 @@ this way.
     -> Good.
     - The test borrows directly from the same constant.
     class ConfigReader {
-      @VisibleForTesting static final String USER_FIELD = "user";
+      @VisibleForTesting
+      static final String USER_FIELD = "user";
 
       Config parseConfig(String configData) {
         ...
@@ -593,8 +554,6 @@ Many small interfaces can seem heavyweight, since you end up with a
 large number of source files. Consider the pattern below as an
 alternative.
 
-``
-
     interface FileFetcher {
       File getFile(String name);
 
@@ -614,16 +573,14 @@ other related classes. This leads to highly
 [cohesive](http://en.wikipedia.org/wiki/Cohesion_(computer_science))
 code.
 
-    An unfortunate lack of consideration.  Anyone who wants to interact with Blobs will need to
-    write specific glue code.
+    - An unfortunate lack of consideration. Anyone who wants to interact with Blobs will need to write specific glue code.
     class Blobs {
       byte[] nextBlob() {
         ...
       }
     }
 
-    Much better.  Now the caller can easily adapt this to standard collections, or do more
-    complex things like filtering.
+    - Much better. Now the caller can easily adapt this to standard collections, or do more complex things like filtering.
     class Blobs implements Iterable<byte[]> {
       @Override
       Iterator<byte[]> iterator() {
@@ -631,7 +588,7 @@ code.
       }
     }
 
-Warning - don't bend the definition of an existing interface to make
+**Warning** - don't bend the definition of an existing interface to make
 this work. If the interface doesn't conceptually apply cleanly, it's
 best to avoid this.
 
@@ -657,10 +614,10 @@ major benefits over fakes.
       }
     }
 
-    Bad.
-    -Our test has little control over method call order and frequency.
-    -We need to be careful that changes to HttpTransport don't disable FakeHttpTransport.
-    -May require a significant amount of code.
+    -> Bad.
+    - Our test has little control over method call order and frequency.
+    - We need to be careful that changes to HttpTransport don't disable FakeHttpTransport.
+    - May require a significant amount of code.
     class FakeHttpTransport extends HttpTransport {
       @Override
       void writeBytes(byte[] bytes) {
@@ -697,8 +654,8 @@ major benefits over fakes.
       }
     }
 
-    Good.
-    -We can mock the interface and have very fine control over how it is expected to be used.
+    -> Good.
+    - We can mock the interface and have very fine control over how it is expected to be used.
     public class RpcClientTest {
       private RpcClient client;
       private Transport transport;
@@ -714,8 +671,8 @@ major benefits over fakes.
 
 ### Let your callers construct support objects
 
-    Bad.
-    -A unit test needs to manage a temporary file on disk to test this class.
+    -> Bad.
+    - A unit test needs to manage a temporary file on disk to test this class.
     class ConfigReader {
       private final InputStream configStream;
       ConfigReader(String fileName) throws IOException {
@@ -723,8 +680,8 @@ major benefits over fakes.
       }
     }
 
-    Good.
-    -Testing this class is as easy as using ByteArrayInputStream with a String.
+    -> Good.
+    - Testing this class is as easy as using ByteArrayInputStream with a String.
     class ConfigReader {
       private final InputStream configStream;
       ConfigReader(InputStream configStream){
@@ -764,19 +721,6 @@ apply.
 
 ### Testing antipatterns
 
-#### Time-dependence
-
-Code that captures real wall time can be difficult to test repeatably,
-especially when time deltas are meaningful. Therefore, try to avoid
-`new Date()`, `System.currentTimeMillis()`, and `System.nanoTime()`. A
-suitable replacement for these is
-[Clock](https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/Clock.java);
-using
-[Clock.SYSTEM\_CLOCK](https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/Clock.java#L32)
-when running normally, and
-[FakeClock](https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/testing/FakeClock.java)
-in tests.
-
 #### The hidden stress test
 
 Avoid writing unit tests that attempt to verify a certain amount of
@@ -796,7 +740,7 @@ fast tests can execute. No matter how fast the machine is, a test that
 sleeps for one second can never execute in less than one second. Over
 time, this leads to very long test execution cycles.
 
-### Avoid randomness in tests
+#### Avoid randomness in tests
 
 Using random values may seem like a good idea in a test, as it allows
 you to cover more test cases with less code. The problem is that you
@@ -827,10 +771,10 @@ well-defined barrier against bad input from callers. As a convention,
 object parameters to public constructors and methods should always be
 checked against null, unless null is explicitly allowed.
 
-*See also [be wary of null](#be-wary-of-null), [@Nullable](\#nullable)*
+*See also [be wary of null](#be-wary-of-null), [[@Nullable]](#nullable)*
 
-    Bad.
-    -If the file or callback are null, the problem isn't noticed until much later.
+    -> Bad.
+    - If the file or callback are null, the problem isn't noticed until much later.
     class AsyncFileReader {
       void readLater(File file, Closure<String> callback) {
         scheduledExecutor.schedule(new Runnable() {
@@ -841,7 +785,7 @@ checked against null, unless null is explicitly allowed.
       }
     }
 
-    Good.
+    -> Good.
     class AsyncFileReader {
       void readLater(File file, Closure<String> callback) {
         checkNotNull(file);
@@ -863,20 +807,20 @@ you make accessible. Therefore, only expose what you intend the caller
 to use. This can be imperative when writing thread-safe code.
 
     public class Parser {
-      Bad.
-      -Callers can directly access and mutate, possibly breaking internal assumptions.
+      -> Bad.
+      - Callers can directly access and mutate, possibly breaking internal assumptions.
       public Map<String, String> rawFields;
 
-      Bad.
-      -This is probably intended to be an internal utility function.
+      -> Bad.
+      - This is probably intended to be an internal utility function.
       public String readConfigLine() {
         ..
       }
     }
 
-    Good.
-    -rawFields and the utility function are hidden
-    -The class is package-private, indicating that it should only be accessed indirectly.
+    -> Good.
+    - rawFields and the utility function are hidden
+    - The class is package-private, indicating that it should only be accessed indirectly.
     class Parser {
       private final Map<String, String> rawFields;
 
@@ -891,45 +835,34 @@ Mutable objects carry a burden - you need to make sure that those who
 are *able* to mutate it are not violating expectations of other users of
 the object, and that it's even safe for them to modify.
 
-    Bad.
-    -Anyone with a reference to User can modify the user's birthday.
-    -Calling getAttributes() gives mutable access to the underlying map.
+    -> Bad.
+    - Anyone with a reference to User can modify the user's birthday.
+    - Calling getAttributes() gives mutable access to the underlying map.
     public class User {
       public Date birthday;
       private final Map<String, String> attributes = Maps.newHashMap();
-
       ...
-
       public Map<String, String> getAttributes() {
         return attributes;
       }
     }
 
-    Good.
+    -> Good.
     public class User {
       private final Date birthday;
       private final Map<String, String> attributes = Maps.newHashMap();
-
       ...
-
       public Map<String, String> getAttributes() {
         return ImmutableMap.copyOf(attributes);
       }
 
-      If you realize the users don't need the full map, you can avoid the map copy
-      by providing access to individual members.
+      - If you realize the users don't need the full map,
+      - you can avoid the map copy by providing access to individual members.
       @Nullable
       public String getAttribute(String attributeName) {
         return attributes.get(attributeName);
       }
     }
-
-#### Be wary of null
-
-Use `@Nullable` where prudent, but favor
-[Optional](http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Optional.html)
-over `@Nullable`. `Optional` provides better semantics around absence of
-a value.
 
 #### Clean up with finally
 
@@ -945,13 +878,13 @@ a value.
 Even if there are no checked exceptions, there are still cases where you
 should use try/finally to guarantee resource symmetry.
 
-    Bad.
-    -Mutex is never unlocked.
+    -> Bad.
+    - Mutex is never unlocked.
     mutex.lock();
     throw new NullPointerException();
     mutex.unlock();
 
-    Good.
+    -> Good.
     mutex.lock();
     try {
       throw new NullPointerException();
@@ -959,14 +892,14 @@ should use try/finally to guarantee resource symmetry.
       mutex.unlock();
     }
 
-    Bad.
-    -Connection is not closed if sendMessage throws.
+    -> Bad.
+    - Connection is not closed if sendMessage throws.
     if (receivedBadMessage) {
       conn.sendMessage("Bad request.");
       conn.close();
     }
 
-    Good.
+    -> Good.
     if (receivedBadMessage) {
       try {
         conn.sendMessage("Bad request.");
@@ -982,11 +915,11 @@ should use try/finally to guarantee resource symmetry.
 Favor readability - if there's an ambiguous and unambiguous route,
 always favor unambiguous.
 
-    Bad.
-    -Depending on the font, it may be difficult to discern 1001 from 100l.
+    -> Bad.
+    - Depending on the font, it may be difficult to discern 1001 from 100l.
     long count = 100l + n;
 
-    Good.
+    -> Good.
     long count = 100L + n;
 
 #### Remove dead code
@@ -1001,15 +934,15 @@ whenever possible. This avoids implementation detail leak via your API,
 and allows you to change the types used internally without affecting
 users or peripheral code.
 
-    Bad.
-    -Implementations of Database must match the ArrayList return type.
-    -Changing return type to Set<User> or List<User> could break implementations and users.
+    -> Bad.
+    - Implementations of Database must match the ArrayList return type.
+    - Changing return type to Set<User> or List<User> could break implementations and users.
     interface Database {
       ArrayList<User> fetchUsers(String query);
     }
 
-    Good.
-    -Iterable defines the minimal functionality required of the return.
+    -> Good.
+    - Iterable defines the minimal functionality required of the return.
     interface Database {
       Iterable<User> fetchUsers(String query);
     }
@@ -1028,21 +961,6 @@ do result in compiler warnings.
 We conventionally include type parameters on every declaration where the
 type is parameterized. Even if the type is unknown, it's preferable to
 include a wildcard or wide type.
-
-#### Stay out of [Texas](http://en.wikipedia.org/wiki/Texas-sized)
-
-Try to keep your classes bite-sized and with clearly-defined
-responsibilities. This can be *really* hard as a program evolves.
-
--   texas imports
--   texas constructors: Can the class be cleanly broken apart?\
-     If not, consider builder pattern.
--   texas methods
-
-We could do some science and come up with a statistics-driven threshold
-for each of these, but it probably wouldn't be very useful. This is
-usually just a gut instinct, and these are traits of classes that are
-too large or complex and should be broken up.
 
 #### Avoid typecasting
 
@@ -1066,19 +984,19 @@ is unit testing. Since unit tests runs are typically in a single VM,
 static state will persist through all test cases. In general, mutable
 static state is a sign of poor class design.
 
-#### Exceptions
+### Exceptions
 
-##### Catch narrow exceptions
+#### Catch narrow exceptions
 
 Sometimes when using try/catch blocks, it may be tempting to just
-`catch Exception`, `Error`, or `Throwable` so you don't have to worry
-about what type was thrown. This is usually a bad idea, as you can end
-up catching more than you really wanted to deal with. For example,
-`catch Exception` would capture `NullPointerException`, and
+`catch             Exception`, `Error`, or `Throwable` so you don't have
+to worry about what type was thrown. This is usually a bad idea, as you
+can end up catching more than you really wanted to deal with. For
+example, `catch Exception` would capture `NullPointerException`, and
 `catch Throwable` would capture `OutOfMemoryError`.
 
-    Bad.
-    -If a RuntimeException happens, the program continues rather than aborting.
+    -> Bad.
+    - If a RuntimeException happens, the program continues rather than aborting.
     try {
       storage.insertUser(user);
     } catch (Exception e) {
@@ -1091,13 +1009,13 @@ up catching more than you really wanted to deal with. For example,
       LOG.error("Failed to insert user.");
     }
 
-##### Don't swallow exceptions
+#### Don't swallow exceptions
 
 An empty `catch` block is usually a bad idea, as you have no signal of a
 problem. Coupled with [narrow exception](#catch-narrow-exceptions)
 violations, it's a recipe for disaster.
 
-##### When interrupted, reset thread interrupted state
+#### When interrupted, reset thread interrupted state
 
 Many blocking operations throw
 [InterruptedException](http://docs.oracle.com/javase/7/docs/api/java/lang/InterruptedException.html)
@@ -1109,16 +1027,16 @@ IBM has a good
 [article](http://www.ibm.com/developerworks/java/library/j-jtp05236/index.html)
 on this topic.
 
-    Bad.
-    -Surrounding code (or higher-level code) has no idea that the thread was interrupted.
+    -> Bad.
+    - Surrounding code (or higher-level code) has no idea that the thread was interrupted.
     try {
       lock.tryLock(1L, TimeUnit.SECONDS)
     } catch (InterruptedException e) {
       LOG.info("Interrupted while doing x");
     }
 
-    Good.
-    -Interrupted state is preserved.
+    -> Good.
+    - Interrupted state is preserved.
     try {
       lock.tryLock(1L, TimeUnit.SECONDS)
     } catch (InterruptedException e) {
@@ -1126,7 +1044,7 @@ on this topic.
       Thread.currentThread().interrupt();
     }
 
-##### Throw appropriate exception types
+#### Throw appropriate exception types
 
 Let your API users obey [catch narrow
 exceptions](#catch-narrow-exceptions), don't throw Exception. Even if
@@ -1135,21 +1053,21 @@ that so it doesn't bubble up even further. You should also make an
 effort to hide implementation details from your callers when it comes to
 exceptions.
 
-    Bad.
-    -Caller is forced to catch Exception, trapping many unnecessary types of issues.
+    -> Bad.
+    - Caller is forced to catch Exception, trapping many unnecessary types of issues.
     interface DataStore {
       String fetchValue(String key) throws Exception;
     }
 
-    Better.
-    -The interface leaks details about one specific implementation.
+    -> Better.
+    - The interface leaks details about one specific implementation.
     interface DataStore {
       String fetchValue(String key) throws SQLException, UnknownHostException;
     }
 
-    Good.
-    -A custom exception type insulates the user from the implementation.
-    -Different implementations aren't forced to abuse irrelevant exception types.
+    -> Good.
+    - A custom exception type insulates the user from the implementation.
+    - Different implementations aren't forced to abuse irrelevant exception types.
     interface DataStore {
       String fetchValue(String key) throws StorageException;
 
@@ -1166,10 +1084,6 @@ exceptions.
 is thread-safe, which is rarely needed.
 
 #### ScheduledExecutorService over Timer
-
-Drawing from [Java Concurrency in Practice](#recommended-reading)
-(directly borrowed from a stackoverflow
-[question](http://stackoverflow.com/questions/409932/java-timer-vs-executorservice)).
 
 -   `Timer` can be sensitive to changes in the system clock,
     `ScheduledThreadPoolExecutor` is not
@@ -1196,15 +1110,10 @@ can usually serve as a drop-in replacement for `Vector`.
 
 ### equals() and hashCode()
 
-If you override one, you must implement both. *See the equals/hashCode
-[contract](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode())*
+If you override one, you must implement both. See the equals/hashCode
+[contract](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()).
 
-[Objects.equal()](http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Objects.html#equal(java.lang.Object,%20java.lang.Object))
-and
-[Objects.hashCode()](http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Objects.html#hashCode(java.lang.Object...))
-make it very easy to follow these contracts.
-
-### Premature optimization is the root of all evil.
+### Premature optimization is the root of all evil. {#premature-optimization-is-the-root-of-all-evil}
 
 Donald Knuth is a smart guy, and he had a few things to
 [say](http://c2.com/cgi/wiki?PrematureOptimization) on the topic.
@@ -1229,11 +1138,11 @@ reasons. It can also serve as a useful signal when debugging.
 TODOs should have owners, otherwise they are unlikely to ever be
 resolved.
 
-    Bad.
-    -TODO is unassigned.
+    -> Bad.
+    - TODO is unassigned.
     TODO: Implement request backoff.
 
-    Good.
+    -> Good.
     TODO(George Washington): Implement request backoff.
 
 #### Adopt TODOs
@@ -1257,8 +1166,8 @@ or methods that take few parameters. The key idea is to defer assembly
 to the layers of the code that know enough to assemble and instead just
 take the minimal interface you need to get your work done.
 
-    Bad.
-    -Weigher uses hosts and port only to immediately construct another object.
+    -> Bad.
+    - Weigher uses hosts and port only to immediately construct another object.
     class Weigher {
       private final double defaultInitialRate;
 
@@ -1268,7 +1177,7 @@ take the minimal interface you need to get your work done.
       }
     }
 
-    Good.
+    -> Good.
     class Weigher {
       private final double defaultInitialRate;
 
@@ -1293,6 +1202,8 @@ extracted sites are often easier to flow-analyse for human eyes. The
 classic case is branched variable assignment. In the extreme, never do
 this:
 
+Instead of this:
+
     void calculate(Subject subject) {
       double weight;
       if (useWeightingService(subject)) {
@@ -1308,7 +1219,7 @@ this:
       Use weight here for further calculations
     }
 
-Instead do this:
+Do this:
 
     void calculate(Subject subject) {
       double weight = calculateWeight(subject);
@@ -1340,7 +1251,7 @@ A code reader that generally trusts methods do what they say can scan
 calculate quickly now and drill down only to those methods where I want
 to learn more.
 
-### Don't Repeat Yourself ([DRY](http://en.wikipedia.org/wiki/Don't\_repeat\_yourself))
+### Don't Repeat Yourself [[DRY]](http://en.wikipedia.org/wiki/Don't_repeat_yourself) {#dont-repeat-yourself-dryhttpen.wikipedia.orgwikidont_repeat_yourself}
 
 For a more long-winded discussion on this topic, read
 [here](http://c2.com/cgi/wiki?DontRepeatYourself).
@@ -1375,18 +1286,18 @@ shutting down, consider registering with
 
 #### Superfluous temporary variables.
 
-    Bad.
-    -The variable is immediately returned, and just serves to clutter the code.
+    -> Bad.
+    - The variable is immediately returned, and just serves to clutter the code.
     List<String> strings = fetchStrings();
     return strings;
 
-    Good.
+    -> Good.
     return fetchStrings();
 
 #### Unneeded assignment.
 
-    Bad.
-    -The null value is never realized.
+    -> Bad.
+    - The null value is never realized.
     String value = null;
     try {
       value = "The value is " + parse(foo);
@@ -1394,20 +1305,10 @@ shutting down, consider registering with
       throw new IllegalStateException(e);
     }
 
-    Good
+    -> Good
     String value;
     try {
       value = "The value is " + parse(foo);
     } catch (BadException e) {
       throw new IllegalStateException(e);
     }
-
-### The 'fast' implementation
-
-Don't bewilder your API users with a 'fast' or 'optimized'
-implementation of a method.
-
-    int fastAdd(Iterable<Integer> ints);
-
-    Why would the caller ever use this when there's a 'fast' add?
-    int add(Iterable<Integer> ints);

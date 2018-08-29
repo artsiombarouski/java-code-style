@@ -1,76 +1,103 @@
-<h1 id="java-style-guide">Java Style Guide</h1>
-<h3>Any fool can write code that a computer can understand. Good programmers write code that humans can understand.</h3>
-<a>Martin Flower</a>
-<p/>
-<h2>If you use IntelijIdea, most of points in this documentation can be done by use auto formatting,
-    so do not forget to use this function</h2>
-<p>The intention of this guide is to provide a set of conventions that encourage good code. It is
-    the distillation of many combined man-years of software engineering and Java development
-    experience. While some suggestions are more strict than others, you should always practice good
-    judgement.</p>
-<p>If following the guide causes unnecessary hoop-jumping or otherwise less-readable code, <em>readability
-    trumps the guide</em>. However, if the more 'readable' variant comes with perils or pitfalls,
-    readability may be sacrificed.</p>
-<p>Original source for our code style <a
-        href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md">Twitter
-    Java Style Guide</a></p>
-<p>In general, much of our style and conventions mirror the <a
-        href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Code Conventions for
-    the Java Programming Language</a> and <a
-        href="https://google.github.io/styleguide/javaguide.html">Google's Java Style Guide</a>.</p>
-<h2 id="table-of-contents">Table of contents</h2>
-<ul>
-    <li><a href="#coding-style">Coding style</a></li>
-    <li><a href="#formatting">Formatting</a></li>
-    <li><a href="#field-class-and-method-declarations">Field, class, and method declarations</a>
-    </li>
-    <li><a href="#variable-naming">Variable naming</a></li>
-    <li><a href="#space-pad-operators-and-equals">Space pad operators and equals</a></li>
-    <li><a href="#be-explicit-about-operator-precedence">Be explicit about operator precedence</a>
-    </li>
-    <li><a href="#documentation">Documentation</a></li>
-    <li><a href="#imports">Imports</a></li>
-    <li><a href="#use-annotations-wisely">Use annotations wisely</a></li>
-    <li><a href="#use-interfaces">Use interfaces</a></li>
-    <li><a href="#writing-testable-code">Writing testable code</a></li>
-    <li><a href="#fakes-and-mocks">Fakes and mocks</a></li>
-    <li><a href="#let-your-callers-construct-support-objects">Let your callers construct support
-        objects</a></li>
-    <li><a href="#testing-multithreaded-code">Testing multithreaded code</a></li>
-    <li><a href="#testing-antipatterns">Testing antipatterns</a></li>
-    <li><a href="#avoid-randomness-in-tests">Avoid randomness in tests</a></li>
-    <li><a href="#best-practices">Best practices</a></li>
-    <li><a href="#defensive-programming">Defensive programming</a></li>
-    <li><a href="#clean-code">Clean code</a></li>
-    <li><a href="#use-newerbetter-libraries">Use newer/better libraries</a></li>
-    <li><a href="#equals-and-hashcode">equals() and hashCode()</a></li>
-    <li><a href="#premature-optimization-is-the-root-of-all-evil">Premature optimization is the root
-        of all evil</a></li>
-    <li><a href="#todos">TODOs</a></li>
-    <li><a href="#obey-the-law-of-demeter-lod">Obey the Law of Demeter</a></li>
-    <li><a href="#dont-repeat-yourself-dry">Don't Repeat Yourself</a></li>
-    <li><a href="#manage-threads-properly">Manage threads properly</a></li>
-    <li><a href="#avoid-unnecessary-code">Avoid unnecessary code</a></li>
-    <li><a href="#the-fast-implementation">The 'fast' implementation</a></li>
-</ul>
+<html>
+<head>
+    <style>
+        pre {background:#f2f2f2; border:1px; border-style:solid; border-color:#e6e6e6; padding: 1em; padding-top:0px}
+        h2 {padding-top:24px}
+        h3 {padding-top:16px}
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner" style="width:50%; margin:0 auto">
 
-<h2 id="coding-style">Coding style</h2>
-<h3 id="formatting">Formatting</h3>
-<h4 id="use-line-breaks-wisely">Use line breaks wisely</h4>
-<p>There are generally two reasons to insert a line break:</p>
-<ol style="list-style-type: decimal">
-    <li><p>Your statement exceeds the column limit.</p></li>
-    <li><p>You want to logically separate a thought.<br/> Writing code is like telling a story.
-        Written language constructs like chapters, paragraphs, and punctuation (e.g. semicolons,
-        commas, periods, hyphens) convey thought hierarchy and separation. We have similar
-        constructs in programming languages; you should use them to your advantage to effectively
-        tell the story to those reading the code.</p></li>
-</ol>
-<h4 id="indent-style">Indent style</h4>
-<a>We use the &quot;one true brace style&quot; (<a
-        href="http://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS">1TBS</a>). Indent size is 2
-    columns.</a>
-<code><pre>
+        <h1 id="java-style-guide">Java Style Guide</h1>
+        <h3><i>Any fool can write code that a computer can understand. Good programmers write code
+            that
+            humans can understand.</i></h3>
+        <a><i>Martin Flower</i></a>
+        <p/>
+        <h2>If you use IntelijIdea, most of points in this documentation can be done by use auto
+            formatting,
+            so do not forget to use this function</h2>
+        <p>The intention of this guide is to provide a set of conventions that encourage good code.
+            It is
+            the distillation of many combined man-years of software engineering and Java development
+            experience. While some suggestions are more strict than others, you should always
+            practice good
+            judgement.</p>
+        <p>If following the guide causes unnecessary hoop-jumping or otherwise less-readable code,
+            <em>readability
+                trumps the guide</em>. However, if the more 'readable' variant comes with perils or
+            pitfalls,
+            readability may be sacrificed.</p>
+        <p>Original source for our code style <a
+                href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md">Twitter
+            Java Style Guide</a></p>
+        <p>In general, much of our style and conventions mirror the <a
+                href="http://www.oracle.com/technetwork/java/codeconvtoc-136057.html">Code
+            Conventions for
+            the Java Programming Language</a> and <a
+                href="https://google.github.io/styleguide/javaguide.html">Google's Java Style
+            Guide</a>.</p>
+        <h2 id="table-of-contents">Table of contents</h2>
+        <ul>
+            <li><a href="#coding-style">Coding style</a></li>
+            <li><a href="#formatting">Formatting</a></li>
+            <li><a href="#field-class-and-method-declarations">Field, class, and method
+                declarations</a>
+            </li>
+            <li><a href="#variable-naming">Variable naming</a></li>
+            <li><a href="#space-pad-operators-and-equals">Space pad operators and equals</a></li>
+            <li><a href="#be-explicit-about-operator-precedence">Be explicit about operator
+                precedence</a>
+            </li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#use-annotations-wisely">Use annotations wisely</a></li>
+            <li><a href="#use-interfaces">Use interfaces</a></li>
+            <li><a href="#writing-testable-code">Writing testable code</a></li>
+            <li><a href="#fakes-and-mocks">Fakes and mocks</a></li>
+            <li><a href="#let-your-callers-construct-support-objects">Let your callers construct
+                support
+                objects</a></li>
+            <li><a href="#testing-multithreaded-code">Testing multithreaded code</a></li>
+            <li><a href="#testing-antipatterns">Testing antipatterns</a></li>
+            <li><a href="#avoid-randomness-in-tests">Avoid randomness in tests</a></li>
+            <li><a href="#best-practices">Best practices</a></li>
+            <li><a href="#defensive-programming">Defensive programming</a></li>
+            <li><a href="#clean-code">Clean code</a></li>
+            <li><a href="#use-newerbetter-libraries">Use newer/better libraries</a></li>
+            <li><a href="#equals-and-hashcode">equals() and hashCode()</a></li>
+            <li><a href="#premature-optimization-is-the-root-of-all-evil">Premature optimization is
+                the root
+                of all evil</a></li>
+            <li><a href="#todos">TODOs</a></li>
+            <li><a href="#obey-the-law-of-demeter-lod">Obey the Law of Demeter</a></li>
+            <li><a href="#dont-repeat-yourself-dry">Don't Repeat Yourself</a></li>
+            <li><a href="#manage-threads-properly">Manage threads properly</a></li>
+            <li><a href="#avoid-unnecessary-code">Avoid unnecessary code</a></li>
+        </ul>
+
+        <h2 id="coding-style">Coding style</h2>
+        <h3 id="formatting">Formatting</h3>
+        <h4 id="use-line-breaks-wisely">Use line breaks wisely</h4>
+        <p>There are generally two reasons to insert a line break:</p>
+        <ol style="list-style-type: decimal">
+            <li><p>Your statement exceeds the column limit.</p></li>
+            <li><p>You want to logically separate a thought.<br/> Writing code is like telling a
+                story.
+                Written language constructs like chapters, paragraphs, and punctuation (e.g.
+                semicolons,
+                commas, periods, hyphens) convey thought hierarchy and separation. We have similar
+                constructs in programming languages; you should use them to your advantage to
+                effectively
+                tell the story to those reading the code.</p></li>
+        </ol>
+        <h4 id="indent-style">Indent style</h4>
+        <a>We use the &quot;one true brace style&quot; (<a
+                href="http://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS">1TBS</a>). Indent
+            size is 2
+            columns.</a>
+        <pre><code>
 -> Like this.
 if (x &lt; 0) {
     negative(x);
@@ -84,11 +111,10 @@ if (x &lt; 0)
 
 -> or this
 if(x &lt; 0)
-negtive(x);</pre>
-</code>
-<h4>Continuation indent is 4 columns. Nested continuations may add 4 columns or 2 at each
-    level.</h4>
-<code><pre>
+negtive(x);</code></pre>
+        <h4>Continuation indent is 4 columns. Nested continuations may add 4 columns or 2 at each
+            level.</h4>
+        <pre><code>
 -> Bad.
 - Line breaks are arbitrary.
 - Scanning the code makes it difficult to piece the message together.
@@ -103,19 +129,18 @@ throw new IllegalStateException(&quot;Failed to process&quot;
     + &quot; request &quot; + request.getId()
     + &quot; for user &quot; + user.getId()
     + &quot; query: &#39;&quot; + query.getText() + &quot;&#39;&quot;);
-</pre>
-</code>
-<h4>Don't break up a statement unnecessarily.</h4>
-<code><pre>
+</code></pre>
+        <h4>Don't break up a statement unnecessarily.</h4>
+        <pre><code>
 -> Bad.
 final String value =
     otherValue;
 
 -> Good.
-final String value = otherValue;</pre>
-</code>
-<h4>Method declaration continuations.</h4>
-<code><pre>
+final String value = otherValue;
+</code></pre>
+        <h4>Method declaration continuations.</h4>
+        <pre><code>
 -> Sub-optimal since line breaks are arbitrary and only filling lines.
 String downloadAnInternet(Internet internet, Tubes tubes,
     Blogosphere blogs, Amount&lt;Long, Data&gt; bandwidth) {
@@ -158,10 +183,10 @@ public String downloadAnInternet(
 
   tubes.download(internet);
   ...
-}</pre>
-</code>
-<h4 id="chained-method-calls">Chained method calls</h4>
-<code><pre>
+}
+</code></pre>
+        <h4 id="chained-method-calls">Chained method calls</h4>
+        <pre><code>
 -> Bad.
 - Line breaks are based on line length, not logic.
 Iterable&lt;Module&gt; modules = ImmutableList.&lt;Module&gt;builder().add(new LifecycleModule())
@@ -183,15 +208,17 @@ Iterable&lt;Module&gt; modules = ImmutableList.&lt;Module&gt;builder()
     .add(new LifecycleModule())
     .add(new AppLauncherModule())
     .addAll(application.getModules())
-    .build();</pre>
-</code>
-<h4 id="column-limit">100 column limit</h4>
-<p>You should follow the convention set by the body of code you are working with. We tend to use 100
-    columns for a balance between fewer continuation lines but still easily fitting two editor tabs
-    side-by-side on a reasonably-high resolution display.</p>
+    .build();
+</code></pre>
+        <h4 id="column-limit">100 column limit</h4>
+        <p>You should follow the convention set by the body of code you are working with. We tend to
+            use 100
+            columns for a balance between fewer continuation lines but still easily fitting two
+            editor tabs
+            side-by-side on a reasonably-high resolution display.</p>
 
-<h4>Naming convention</h4>
-<code><pre>
+        <h4>Naming convention</h4>
+        <pre><code>
 -> UpperCamelCase for types.
 class Example {}
 
@@ -199,31 +226,34 @@ class Example {}
 public String name;
 
 -> UPPER_SNAKE for constants
-public static final String ACTION_ID = 1;</pre>
-</code>
+public static final String ACTION_ID = 1;
+</code></pre>
 
-<h4 id="no-trailing-whitespace">No trailing whitespace</h4>
-<p>Trailing whitespace characters, while logically benign, add nothing to the program. However, they
-    do serve to frustrate developers when using keyboard shortcuts to navigate code.</p>
-<h3 id="field-class-and-method-declarations">Field, class, and method declarations</h3>
-<h4 id="modifier-order">Modifier order</h4>
-<p>We follow the <a href="http://docs.oracle.com/javase/specs/">Java Language Specification</a> for
-    modifier ordering (sections <a
-            href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.1.1">8.1.1</a>,
-    <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.3.1">8.3.1</a> and <a
-            href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.4.3">8.4.3</a>).
-</p>
-<code><pre>
+        <h4 id="no-trailing-whitespace">No trailing whitespace</h4>
+        <p>Trailing whitespace characters, while logically benign, add nothing to the program.
+            However, they
+            do serve to frustrate developers when using keyboard shortcuts to navigate code.</p>
+        <h3 id="field-class-and-method-declarations">Field, class, and method declarations</h3>
+        <h4 id="modifier-order">Modifier order</h4>
+        <p>We follow the <a href="http://docs.oracle.com/javase/specs/">Java Language
+            Specification</a> for
+            modifier ordering (sections <a
+                    href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.1.1">8.1.1</a>,
+            <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.3.1">8.3.1</a>
+            and <a
+                    href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.4.3">8.4.3</a>).
+        </p>
+        <pre><code>
 -> Bad.
 final volatile private String value;
 
 -> Good.
-private final volatile String value;</pre>
-</code>
-<h4 id="variable-naming">Variable naming</h4>
-<p id="extremely-short-variable-names-should-be-reserved-for-instances-like-loop-indices.">
-    Extremely short variable names should be reserved for instances like loop indices.</p>
-<code><pre>
+private final volatile String value;
+</code></pre>
+        <h4 id="variable-naming">Variable naming</h4>
+        <p id="extremely-short-variable-names-should-be-reserved-for-instances-like-loop-indices.">
+            Extremely short variable names should be reserved for instances like loop indices.</p>
+        <pre><code>
 -> Bad.
 - Field names give little insight into what fields are used for.
 class User {
@@ -238,65 +268,70 @@ class User {
   private final int ageInYears;
   private final String maidenName;
   ...
-}</pre>
-</code>
-<h4 id="include-units-in-variable-names">Include units in variable names</h4>
-<code><pre>
+}
+</code></pre>
+        <h4 id="include-units-in-variable-names">Include units in variable names</h4>
+        <pre><code>
 -> Bad.
 long pollInterval;
 int fileSize;
 
 -> Good.
 long pollIntervalMs;
-int fileSizeGb.</pre>
-</code>
-<h4 id="dont-embed-metadata-in-variable-names">Don't embed metadata in variable names</h4>
-<p>A variable name should describe the variable's purpose. Adding extra information like scope and
-    type is generally a sign of a bad variable name.</p>
-<p>Avoid embedding the field type in the field name.</p>
-<code><pre>
+int fileSizeGb.
+</code></pre>
+        <h4 id="dont-embed-metadata-in-variable-names">Don't embed metadata in variable names</h4>
+        <p>A variable name should describe the variable's purpose. Adding extra information like
+            scope and
+            type is generally a sign of a bad variable name.</p>
+        <p>Avoid embedding the field type in the field name.</p>
+        <pre><code>
 -> Bad.
 Map&lt;Integer, User&gt; idToUserMap;
 String valueString;
 
 -> Good.
 Map&lt;Integer, User&gt; usersById;
-String value;</pre>
-</code>
-<p>Also avoid embedding scope information in a variable. Hierarchy-based naming suggests that a
-    class is too complex and should be broken apart.</p>
-<code><pre>
+String value;
+</code></pre>
+        <p>Also avoid embedding scope information in a variable. Hierarchy-based naming suggests
+            that a
+            class is too complex and should be broken apart.</p>
+        <pre><code>
 -> Bad.
 String _value;
 String mValue;
 
 -> Good.
-String value;</pre>
-</code>
-<h4 id="space-pad-operators-and-equals.">Space pad operators and equals.</h4>
-<code><pre>
+String value;
+</code></pre>
+        <h4 id="space-pad-operators-and-equals">Space pad operators and equals.</h4>
+        <pre><code>
 -> Bad.
 - This offers poor visual separation of operations.
 int foo=a+b+1;
 
 -> Good.
-int foo = a + b + 1;</pre>
-</code>
-<h4 id="be-explicit-about-operator-precedence">Be explicit about operator precedence</h4>
-<p>Don't make your reader open the <a
-        href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html">spec</a> to
-    confirm, if you expect a specific operation ordering, make it obvious with parenthesis.</p>
-<code><pre>
+int foo = a + b + 1;
+</code></pre>
+        <h4 id="be-explicit-about-operator-precedence">Be explicit about operator precedence</h4>
+        <p>Don't make your reader open the <a
+                href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html">spec</a>
+            to
+            confirm, if you expect a specific operation ordering, make it obvious with parenthesis.
+        </p>
+        <pre><code>
 -> Bad.
 return a &lt;&lt; 8 * n + 1 | 0xFF;
 
 -> Good.
-return (a &lt;&lt; (8 * n) + 1) | 0xFF;</pre>
-</code>
-<h2 id="documentation">Documentation</h2>
-<p>The more visible a piece of code is (and by extension - the farther away consumers might be), the
-    more documentation is needed.</p>
-<code><pre>
+return (a &lt;&lt; (8 * n) + 1) | 0xFF;
+</code></pre>
+        <h2 id="documentation">Documentation</h2>
+        <p>The more visible a piece of code is (and by extension - the farther away consumers might
+            be), the
+            more documentation is needed.</p>
+        <pre><code>
 -> Bad.
 /**
  * This is a class that implements a cache.  It does caching for you.
@@ -311,14 +346,17 @@ class Cache {
  */
 class Cache {
   ...
-}</pre>
-</code>
-<h4 id="documenting-a-class">Documenting a class</h4>
-<p>Documentation for a class may range from a single sentence to paragraphs with code examples.
-    Documentation should serve to disambiguate any conceptual blanks in the API, and make it easier
-    to quickly and <em>correctly</em> use your API. A thorough class doc usually has a one sentence
-    summary and, if necessary, a more detailed explanation.</p>
-<code><pre>
+}
+</code></pre>
+        <h4 id="documenting-a-class">Documenting a class</h4>
+        <p>Documentation for a class may range from a single sentence to paragraphs with code
+            examples.
+            Documentation should serve to disambiguate any conceptual blanks in the API, and make it
+            easier
+            to quickly and <em>correctly</em> use your API. A thorough class doc usually has a one
+            sentence
+            summary and, if necessary, a more detailed explanation.</p>
+        <pre><code>
 /**
  * An RPC equivalent of a unix pipe tee.  Any RPC sent to the tee input is guaranteed to have
  * been sent to both tee outputs before the call returns.
@@ -327,12 +365,13 @@ class Cache {
  */
 public class RpcTee&lt;T&gt; {
   ...
-}</pre>
-</code>
-<h4 id="documenting-a-method">Documenting a method</h4>
-<p>A method doc should tell what the method <em>does</em>. Depending on the argument types, it may
-    also be important to document input format.</p>
-<code><pre>
+}
+</code></pre>
+        <h4 id="documenting-a-method">Documenting a method</h4>
+        <p>A method doc should tell what the method <em>does</em>. Depending on the argument types,
+            it may
+            also be important to document input format.</p>
+        <pre><code>
 -> Bad.
 - The doc tells nothing that the method declaration didn&#39;t.
 - This is the &#39;filler doc&#39;. It would pass style checks, but doesn&#39;t help anybody.
@@ -363,12 +402,13 @@ List&lt;String&gt; split(String s);
  * @param s The string to split.  An {@code null} string is treated as an empty string.
  * @return A list of the whitespace-delimited parts of the input.
  */
-List&lt;String&gt; split(String s);</pre>
-</code>
-<h4 id="be-professional">Be professional</h4>
-<p>We've all encountered frustration when dealing with other libraries, but ranting about it doesn't
-    do you any favors. Suppress the expletives and get to the point.</p>
-<code><pre>
+List&lt;String&gt; split(String s);
+</code></pre>
+        <h4 id="be-professional">Be professional</h4>
+        <p>We've all encountered frustration when dealing with other libraries, but ranting about it
+            doesn't
+            do you any favors. Suppress the expletives and get to the point.</p>
+        <pre><code>
 -> Bad.
 I hate xml/soap so much, why can&#39;t it do this for me!?
 try {
@@ -383,10 +423,11 @@ try {
   userId = Integer.parseInt(xml.getField(&quot;id&quot;));
 } catch (NumberFormatException e) {
   ...
-}</pre>
-</code>
-<h4 id="dont-document-overriding-methods-usually">Don't document overriding methods (usually)</h4>
-<code><pre>
+}
+</code></pre>
+        <h4 id="dont-document-overriding-methods-usually">Don't document overriding methods
+            (usually)</h4>
+        <pre><code>
 interface Database {
   /**
    * Gets the installed version of the database.
@@ -428,21 +469,24 @@ class TwitterDatabase implements Database {
   public String getVersion() {
     ...
   }
-}</pre>
-</code>
-<h4 id="use-javadoc-features">Use javadoc features</h4>
-<h5 id="no-author-tags">No author tags</h5>
-<p>Code can change hands numerous times in its lifetime, and quite often the original author of a
-    source file is irrelevant after several iterations. We find it's better to trust commit history
-    and <code>OWNERS</code> files to determine ownership of a body of code.</p>
+}
+</code></pre>
+        <h4 id="use-javadoc-features">Use javadoc features</h4>
+        <h5 id="no-author-tags">No author tags</h5>
+        <p>Code can change hands numerous times in its lifetime, and quite often the original author
+            of a
+            source file is irrelevant after several iterations. We find it's better to trust commit
+            history
+            and <code>OWNERS</code> files to determine ownership of a body of code.</p>
 
-<h3 id="use-annotations-wisely">Use annotations wisely</h3>
-<h4 id="nullable"><span class="citation">@Nullable</span></h4>
-<p>By default - disallow <code>null</code>. When a variable, parameter, or method return value may
-    be <code>null</code>, be explicit about it by marking <a
-            href="http://code.google.com/p/jsr-305/source/browse/trunk/ri/src/main/java/javax/annotation/Nullable.java?r=24">[@Nullable]</a>
-    This is advisable even for fields/methods with private visibility.</p>
-<code><pre>
+        <h3 id="use-annotations-wisely">Use annotations wisely</h3>
+        <h4 id="nullable"><span class="citation">@Nullable</span></h4>
+        <p>By default - disallow <code>null</code>. When a variable, parameter, or method return
+            value may
+            be <code>null</code>, be explicit about it by marking <a
+                    href="http://code.google.com/p/jsr-305/source/browse/trunk/ri/src/main/java/javax/annotation/Nullable.java?r=24">[@Nullable]</a>
+            This is advisable even for fields/methods with private visibility.</p>
+        <pre><code>
 class Database {
   @Nullable
   private Connection connection;
@@ -455,15 +499,17 @@ class Database {
   void setConnection(@Nullable Connection connection) {
     this.connection = connection;
   }
-}</pre>
-</code>
-<h4 id="visiblefortesting"><span class="citation">@VisibleForTesting</span></h4>
-<p>Sometimes it makes sense to hide members and functions in general, but they may still be required
-    for good test coverage. It's usually preferred to make these package-private and tag with <a
-            href="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/annotations/VisibleForTesting.html">[@VisibleForTesting]</a>
-    to indicate the purpose for visibility.</p>
-<p>Constants are a great example of things that are frequently exposed in this way.</p>
-<code><pre>
+}
+</code></pre>
+        <h4 id="visiblefortesting"><span class="citation">@VisibleForTesting</span></h4>
+        <p>Sometimes it makes sense to hide members and functions in general, but they may still be
+            required
+            for good test coverage. It's usually preferred to make these package-private and tag
+            with <a
+                    href="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/annotations/VisibleForTesting.html">[@VisibleForTesting]</a>
+            to indicate the purpose for visibility.</p>
+        <p>Constants are a great example of things that are frequently exposed in this way.</p>
+        <pre><code>
 -> Bad.
 - Any adjustments to field names need to be duplicated in the test.
 class ConfigReader {
@@ -484,7 +530,8 @@ public class ConfigReaderTest {
 -> Good.
 - The test borrows directly from the same constant.
 class ConfigReader {
-  @VisibleForTesting static final String USER_FIELD = &quot;user&quot;;
+  @VisibleForTesting
+  static final String USER_FIELD = &quot;user&quot;;
 
   Config parseConfig(String configData) {
     ...
@@ -497,15 +544,17 @@ public class ConfigReaderTest {
     assertEquals(expectedConfig,
         reader.parseConfig(String.format(&quot;{%s: bob}&quot;, ConfigReader.USER_FIELD)));
   }
-}</pre>
-</code>
-<h3 id="use-interfaces">Use interfaces</h3>
-<p>Interfaces decouple functionality from implementation, allowing you to use multiple
-    implementations without changing consumers. Interfaces are a great way to isolate packages -
-    provide a set of interfaces, and keep your implementations package private.</p>
-<p>Many small interfaces can seem heavyweight, since you end up with a large number of source files.
-    Consider the pattern below as an alternative.</p>
-<code><pre>
+}
+</code></pre>
+        <h3 id="use-interfaces">Use interfaces</h3>
+        <p>Interfaces decouple functionality from implementation, allowing you to use multiple
+            implementations without changing consumers. Interfaces are a great way to isolate
+            packages -
+            provide a set of interfaces, and keep your implementations package private.</p>
+        <p>Many small interfaces can seem heavyweight, since you end up with a large number of
+            source files.
+            Consider the pattern below as an alternative.</p>
+        <pre><code>
 interface FileFetcher {
   File getFile(String name);
 
@@ -516,51 +565,55 @@ interface FileFetcher {
       ...
     }
   }
-}</pre>
-</code>
-<h4 id="leverage-or-extend-existing-interfaces">Leverage or extend existing interfaces</h4>
-<p>Sometimes an existing interface allows your class to easily 'plug in' to other related classes.
-    This leads to highly <a
-            href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">cohesive</a> code.</p>
-<pre><code>
-An unfortunate lack of consideration.  Anyone who wants to interact with Blobs will need to
-write specific glue code.
+}
+</code></pre>
+        <h4 id="leverage-or-extend-existing-interfaces">Leverage or extend existing interfaces</h4>
+        <p>Sometimes an existing interface allows your class to easily 'plug in' to other related
+            classes.
+            This leads to highly <a
+                    href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">cohesive</a>
+            code.</p>
+        <pre><code>
+- An unfortunate lack of consideration. Anyone who wants to interact with Blobs will need to write specific glue code.
 class Blobs {
   byte[] nextBlob() {
     ...
   }
 }
 
-Much better.  Now the caller can easily adapt this to standard collections, or do more
-complex things like filtering.
+- Much better. Now the caller can easily adapt this to standard collections, or do more complex things like filtering.
 class Blobs implements Iterable&lt;byte[]&gt; {
   @Override
   Iterator&lt;byte[]&gt; iterator() {
     ...
   }
 }</code></pre>
-<p>Warning - don't bend the definition of an existing interface to make this work. If the interface
-    doesn't conceptually apply cleanly, it's best to avoid this.</p>
-<h2 id="writing-testable-code">Writing testable code</h2>
-<p>Writing unit tests doesn't have to be hard. You can make it easy for yourself if you keep
-    testability in mind while designing your classes and interfaces.</p>
-<h3 id="fakes-and-mocks">Fakes and mocks</h3>
-<p>When testing a class, you often need to provide some kind of canned functionality as a
-    replacement for real-world behavior. For example, rather than fetching a row from a real
-    database, you have a test row that you want to return. This is most commonly performed with a
-    fake object or a mock object. While the difference sounds subtle, mocks have major benefits over
-    fakes.</p>
-<pre><code>
+        <p><b>Warning</b> - don't bend the definition of an existing interface to make this work. If
+            the
+            interface
+            doesn't conceptually apply cleanly, it's best to avoid this.</p>
+        <h2 id="writing-testable-code">Writing testable code</h2>
+        <p>Writing unit tests doesn't have to be hard. You can make it easy for yourself if you keep
+            testability in mind while designing your classes and interfaces.</p>
+        <h3 id="fakes-and-mocks">Fakes and mocks</h3>
+        <p>When testing a class, you often need to provide some kind of canned functionality as a
+            replacement for real-world behavior. For example, rather than fetching a row from a real
+            database, you have a test row that you want to return. This is most commonly performed
+            with a
+            fake object or a mock object. While the difference sounds subtle, mocks have major
+            benefits over
+            fakes.</p>
+        <pre><code>
 class RpcClient {
   RpcClient(HttpTransport transport) {
     ...
   }
 }
 
-Bad.
--Our test has little control over method call order and frequency.
--We need to be careful that changes to HttpTransport don&#39;t disable FakeHttpTransport.
--May require a significant amount of code.
+-> Bad.
+- Our test has little control over method call order and frequency.
+- We need to be careful that changes to HttpTransport don&#39;t disable FakeHttpTransport.
+- May require a significant amount of code.
 class FakeHttpTransport extends HttpTransport {
   @Override
   void writeBytes(byte[] bytes) {
@@ -597,8 +650,8 @@ class RpcClient {
   }
 }
 
-Good.
--We can mock the interface and have very fine control over how it is expected to be used.
+-> Good.
+- We can mock the interface and have very fine control over how it is expected to be used.
 public class RpcClientTest {
   private RpcClient client;
   private Transport transport;
@@ -611,10 +664,11 @@ public class RpcClientTest {
 
   ...
 }</code></pre>
-<h3 id="let-your-callers-construct-support-objects">Let your callers construct support objects</h3>
-<pre><code>
-Bad.
--A unit test needs to manage a temporary file on disk to test this class.
+        <h3 id="let-your-callers-construct-support-objects">Let your callers construct support
+            objects</h3>
+        <pre><code>
+-> Bad.
+- A unit test needs to manage a temporary file on disk to test this class.
 class ConfigReader {
   private final InputStream configStream;
   ConfigReader(String fileName) throws IOException {
@@ -622,78 +676,84 @@ class ConfigReader {
   }
 }
 
-Good.
--Testing this class is as easy as using ByteArrayInputStream with a String.
+-> Good.
+- Testing this class is as easy as using ByteArrayInputStream with a String.
 class ConfigReader {
   private final InputStream configStream;
   ConfigReader(InputStream configStream){
     this.configStream = checkNotNull(configStream);
   }
 }</code></pre>
-<h3 id="testing-multithreaded-code">Testing multithreaded code</h3>
-<p>Testing code that uses multiple threads is notoriously hard. When approached carefully, however,
-    it can be accomplished without deadlocks or unnecessary time-wait statements.</p>
-<p>If you are testing code that needs to perform periodic background tasks (such as with a <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html">ScheduledExecutorService</a>),
-    consider mocking the service and/or manually triggering the tasks from your tests, and avoiding
-    the actual scheduling. If you are testing code that submits tasks to an <a
-            href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a>,
-    you might consider allowing the executor to be injected, and supplying a <a
-            href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newSingleThreadExecutor()">single-thread
-        executor</a> in tests.</p>
-<p>In cases where multiple threads are inevitable, <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/package-summary.html">java.util.concurrent</a>
-    provides some useful libraries to help manage lock-step execution.</p>
-<p>For example, <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedBlockingDeque.html">LinkedBlockingDeque</a>
-    can provide synchronization between producer and consumer when an asynchronous operation is
-    performed. <a
-            href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html">CountDownLatch</a>
-    is useful for state/operation synchronization when a queue does not apply.</p>
-<h3 id="testing-antipatterns">Testing antipatterns</h3>
-<h4 id="time-dependence">Time-dependence</h4>
-<p>Code that captures real wall time can be difficult to test repeatably, especially when time
-    deltas are meaningful. Therefore, try to avoid <code>new Date()</code>, <code>System.currentTimeMillis()</code>,
-    and <code>System.nanoTime()</code>. A suitable replacement for these is <a
-            href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/Clock.java">Clock</a>;
-    using <a
-            href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/Clock.java#L32">Clock.SYSTEM_CLOCK</a>
-    when running normally, and <a
-            href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/util/testing/FakeClock.java">FakeClock</a>
-    in tests.</p>
-<h4 id="the-hidden-stress-test">The hidden stress test</h4>
-<p>Avoid writing unit tests that attempt to verify a certain amount of performance. This type of
-    testing should be handled separately, and run in a more controlled environment than unit tests
-    typically are.</p>
-<h4 id="thread.sleep">Thread.sleep()</h4>
-<p>Sleeping is rarely warranted, especially in test code. Sleeping is expressing an expectation that
-    something else is happening while the executing thread is suspended. This quickly leads to
-    brittleness; for example if the background thread was not scheduled while you were sleeping.</p>
-<p>Sleeping in tests is also bad because it sets a firm lower bound on how fast tests can execute.
-    No matter how fast the machine is, a test that sleeps for one second can never execute in less
-    than one second. Over time, this leads to very long test execution cycles.</p>
-<h3 id="avoid-randomness-in-tests">Avoid randomness in tests</h3>
-<p>Using random values may seem like a good idea in a test, as it allows you to cover more test
-    cases with less code. The problem is that you lose control over which test cases you're
-    covering. When you do encounter a test failure, it may be difficult to reproduce. Pseudorandom
-    input with a fixed seed is slightly better, but in practice rarely improves test coverage. In
-    general it's better to use fixed input data that exercises known edge cases.</p>
-<h2 id="best-practices">Best practices</h2>
-<h3 id="defensive-programming">Defensive programming</h3>
-<h4 id="avoid-assert">Avoid assert</h4>
-<p>We avoid the assert statement since it can be <a
-        href="http://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html#enable-disable">disabled</a>
-    at execution time, and prefer to enforce these types of invariants at all times.</p>
-<p><em>See also <a href="#preconditions">preconditions</a></em></p>
-<h4 id="preconditions">Preconditions</h4>
-<p>Preconditions checks are a good practice, since they serve as a well-defined barrier against bad
-    input from callers. As a convention, object parameters to public constructors and methods should
-    always be checked against null, unless null is explicitly allowed.</p>
-<p><em>See also <a href="#be-wary-of-null">be wary of null</a>, <span
-        class="citation">[@Nullable]</span>(#nullable)</em></p>
-<pre><code>
-Bad.
--If the file or callback are null, the problem isn&#39;t noticed until much later.
+        <h3 id="testing-multithreaded-code">Testing multithreaded code</h3>
+        <p>Testing code that uses multiple threads is notoriously hard. When approached carefully,
+            however,
+            it can be accomplished without deadlocks or unnecessary time-wait statements.</p>
+        <p>If you are testing code that needs to perform periodic background tasks (such as with a
+            <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ScheduledExecutorService.html">ScheduledExecutorService</a>),
+            consider mocking the service and/or manually triggering the tasks from your tests, and
+            avoiding
+            the actual scheduling. If you are testing code that submits tasks to an <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a>,
+            you might consider allowing the executor to be injected, and supplying a <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newSingleThreadExecutor()">single-thread
+                executor</a> in tests.</p>
+        <p>In cases where multiple threads are inevitable, <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/package-summary.html">java.util.concurrent</a>
+            provides some useful libraries to help manage lock-step execution.</p>
+        <p>For example, <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedBlockingDeque.html">LinkedBlockingDeque</a>
+            can provide synchronization between producer and consumer when an asynchronous operation
+            is
+            performed. <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html">CountDownLatch</a>
+            is useful for state/operation synchronization when a queue does not apply.</p>
+        <h3 id="testing-antipatterns">Testing antipatterns</h3>
+        <h4 id="the-hidden-stress-test">The hidden stress test</h4>
+        <p>Avoid writing unit tests that attempt to verify a certain amount of performance. This
+            type of
+            testing should be handled separately, and run in a more controlled environment than unit
+            tests
+            typically are.</p>
+        <h4 id="thread.sleep">Thread.sleep()</h4>
+        <p>Sleeping is rarely warranted, especially in test code. Sleeping is expressing an
+            expectation that
+            something else is happening while the executing thread is suspended. This quickly leads
+            to
+            brittleness; for example if the background thread was not scheduled while you were
+            sleeping.</p>
+        <p>Sleeping in tests is also bad because it sets a firm lower bound on how fast tests can
+            execute.
+            No matter how fast the machine is, a test that sleeps for one second can never execute
+            in less
+            than one second. Over time, this leads to very long test execution cycles.</p>
+        <h4 id="avoid-randomness-in-tests">Avoid randomness in tests</h4>
+        <p>Using random values may seem like a good idea in a test, as it allows you to cover more
+            test
+            cases with less code. The problem is that you lose control over which test cases you're
+            covering. When you do encounter a test failure, it may be difficult to reproduce.
+            Pseudorandom
+            input with a fixed seed is slightly better, but in practice rarely improves test
+            coverage. In
+            general it's better to use fixed input data that exercises known edge cases.</p>
+        <h2 id="best-practices">Best practices</h2>
+        <h3 id="defensive-programming">Defensive programming</h3>
+        <h4 id="avoid-assert">Avoid assert</h4>
+        <p>We avoid the assert statement since it can be <a
+                href="http://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html#enable-disable">disabled</a>
+            at execution time, and prefer to enforce these types of invariants at all times.</p>
+        <p><em>See also <a href="#preconditions">preconditions</a></em></p>
+        <h4 id="preconditions">Preconditions</h4>
+        <p>Preconditions checks are a good practice, since they serve as a well-defined barrier
+            against bad
+            input from callers. As a convention, object parameters to public constructors and
+            methods should
+            always be checked against null, unless null is explicitly allowed.</p>
+        <p><em>See also <a href="#be-wary-of-null">be wary of null</a>, <a
+                href="#nullable">[@Nullable]</a></em></p>
+        <pre><code>
+-> Bad.
+- If the file or callback are null, the problem isn&#39;t noticed until much later.
 class AsyncFileReader {
   void readLater(File file, Closure&lt;String&gt; callback) {
     scheduledExecutor.schedule(new Runnable() {
@@ -704,7 +764,7 @@ class AsyncFileReader {
   }
 }
 
-Good.
+-> Good.
 class AsyncFileReader {
   void readLater(File file, Closure&lt;String&gt; callback) {
     checkNotNull(file);
@@ -718,26 +778,28 @@ class AsyncFileReader {
     }, 1L, TimeUnit.HOURS);
   }
 }</code></pre>
-<h4 id="minimize-visibility">Minimize visibility</h4>
-<p>In a class API, you should support access to any methods and fields that you make accessible.
-    Therefore, only expose what you intend the caller to use. This can be imperative when writing
-    thread-safe code.</p>
-<pre><code>
+        <h4 id="minimize-visibility">Minimize visibility</h4>
+        <p>In a class API, you should support access to any methods and fields that you make
+            accessible.
+            Therefore, only expose what you intend the caller to use. This can be imperative when
+            writing
+            thread-safe code.</p>
+        <pre><code>
 public class Parser {
-  Bad.
-  -Callers can directly access and mutate, possibly breaking internal assumptions.
+  -> Bad.
+  - Callers can directly access and mutate, possibly breaking internal assumptions.
   public Map&lt;String, String&gt; rawFields;
 
-  Bad.
-  -This is probably intended to be an internal utility function.
+  -> Bad.
+  - This is probably intended to be an internal utility function.
   public String readConfigLine() {
     ..
   }
 }
 
-Good.
--rawFields and the utility function are hidden
--The class is package-private, indicating that it should only be accessed indirectly.
+-> Good.
+- rawFields and the utility function are hidden
+- The class is package-private, indicating that it should only be accessed indirectly.
 class Parser {
   private final Map&lt;String, String&gt; rawFields;
 
@@ -745,50 +807,43 @@ class Parser {
     ..
   }
 }</code></pre>
-<h4 id="favor-immutability">Favor immutability</h4>
-<p>Mutable objects carry a burden - you need to make sure that those who are <em>able</em> to mutate
-    it are not violating expectations of other users of the object, and that it's even safe for them
-    to modify.</p>
-<pre><code>
-Bad.
--Anyone with a reference to User can modify the user&#39;s birthday.
--Calling getAttributes() gives mutable access to the underlying map.
+        <h4 id="favor-immutability">Favor immutability</h4>
+        <p>Mutable objects carry a burden - you need to make sure that those who are <em>able</em>
+            to mutate
+            it are not violating expectations of other users of the object, and that it's even safe
+            for them
+            to modify.</p>
+        <pre><code>
+-> Bad.
+- Anyone with a reference to User can modify the user&#39;s birthday.
+- Calling getAttributes() gives mutable access to the underlying map.
 public class User {
   public Date birthday;
   private final Map&lt;String, String&gt; attributes = Maps.newHashMap();
-
   ...
-
   public Map&lt;String, String&gt; getAttributes() {
     return attributes;
   }
 }
 
-Good.
+-> Good.
 public class User {
   private final Date birthday;
   private final Map&lt;String, String&gt; attributes = Maps.newHashMap();
-
   ...
-
   public Map&lt;String, String&gt; getAttributes() {
     return ImmutableMap.copyOf(attributes);
   }
 
-  If you realize the users don&#39;t need the full map, you can avoid the map copy
-  by providing access to individual members.
+  - If you realize the users don&#39;t need the full map,
+  - you can avoid the map copy by providing access to individual members.
   @Nullable
   public String getAttribute(String attributeName) {
     return attributes.get(attributeName);
   }
 }</code></pre>
-<h4 id="be-wary-of-null">Be wary of null</h4>
-<p>Use <code>@Nullable</code> where prudent, but favor <a
-        href="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Optional.html">Optional</a>
-    over <code>@Nullable</code>. <code>Optional</code> provides better semantics around absence of a
-    value.</p>
-<h4 id="clean-up-with-finally">Clean up with finally</h4>
-<pre><code>
+        <h4 id="clean-up-with-finally">Clean up with finally</h4>
+        <pre><code>
 FileInputStream in = null;
 try {
   ...
@@ -797,16 +852,17 @@ try {
 } finally {
   Closeables.closeQuietly(in);
 }</code></pre>
-<p>Even if there are no checked exceptions, there are still cases where you should use try/finally
-    to guarantee resource symmetry.</p>
-<pre><code>
-Bad.
--Mutex is never unlocked.
+        <p>Even if there are no checked exceptions, there are still cases where you should use
+            try/finally
+            to guarantee resource symmetry.</p>
+        <pre><code>
+-> Bad.
+- Mutex is never unlocked.
 mutex.lock();
 throw new NullPointerException();
 mutex.unlock();
 
-Good.
+-> Good.
 mutex.lock();
 try {
   throw new NullPointerException();
@@ -814,14 +870,14 @@ try {
   mutex.unlock();
 }
 
-Bad.
--Connection is not closed if sendMessage throws.
+-> Bad.
+- Connection is not closed if sendMessage throws.
 if (receivedBadMessage) {
   conn.sendMessage(&quot;Bad request.&quot;);
   conn.close();
 }
 
-Good.
+-> Good.
 if (receivedBadMessage) {
   try {
     conn.sendMessage(&quot;Bad request.&quot;);
@@ -829,84 +885,85 @@ if (receivedBadMessage) {
     conn.close();
   }
 }</code></pre>
-<h3 id="clean-code">Clean code</h3>
-<h4 id="disambiguate">Disambiguate</h4>
-<p>Favor readability - if there's an ambiguous and unambiguous route, always favor unambiguous.</p>
-<pre><code>
-Bad.
--Depending on the font, it may be difficult to discern 1001 from 100l.
+        <h3 id="clean-code">Clean code</h3>
+        <h4 id="disambiguate">Disambiguate</h4>
+        <p>Favor readability - if there's an ambiguous and unambiguous route, always favor
+            unambiguous.</p>
+        <pre><code>
+-> Bad.
+- Depending on the font, it may be difficult to discern 1001 from 100l.
 long count = 100l + n;
 
-Good.
+-> Good.
 long count = 100L + n;</code></pre>
-<h4 id="remove-dead-code">Remove dead code</h4>
-<p>Delete unused code (imports, fields, parameters, methods, classes). They will only rot.</p>
-<h4 id="use-general-types">Use general types</h4>
-<p>When declaring fields and methods, it's better to use general types whenever possible. This
-    avoids implementation detail leak via your API, and allows you to change the types used
-    internally without affecting users or peripheral code.</p>
-<pre><code>
-Bad.
--Implementations of Database must match the ArrayList return type.
--Changing return type to Set&lt;User&gt; or List&lt;User&gt; could break implementations and users.
+        <h4 id="remove-dead-code">Remove dead code</h4>
+        <p>Delete unused code (imports, fields, parameters, methods, classes). They will only
+            rot.</p>
+        <h4 id="use-general-types">Use general types</h4>
+        <p>When declaring fields and methods, it's better to use general types whenever possible.
+            This
+            avoids implementation detail leak via your API, and allows you to change the types used
+            internally without affecting users or peripheral code.</p>
+        <pre><code>
+-> Bad.
+- Implementations of Database must match the ArrayList return type.
+- Changing return type to Set&lt;User&gt; or List&lt;User&gt; could break implementations and users.
 interface Database {
   ArrayList&lt;User&gt; fetchUsers(String query);
 }
 
-Good.
--Iterable defines the minimal functionality required of the return.
+-> Good.
+- Iterable defines the minimal functionality required of the return.
 interface Database {
   Iterable&lt;User&gt; fetchUsers(String query);
 }</code></pre>
-<h4 id="always-use-type-parameters">Always use type parameters</h4>
-<p>Java 5 introduced support for <a
-        href="http://docs.oracle.com/javase/tutorial/java/generics/index.html">generics</a>. This
-    added type parameters to collection types, and allowed users to implement their own
-    type-parameterized classes. Backwards compatibility and <a
-            href="http://docs.oracle.com/javase/tutorial/java/generics/erasure.html">type
-        erasure</a> mean that type parameters are optional, however depending on usage they do
-    result in compiler warnings.</p>
-<p>We conventionally include type parameters on every declaration where the type is parameterized.
-    Even if the type is unknown, it's preferable to include a wildcard or wide type.</p>
-<h4 id="stay-out-of-texas">Stay out of <a href="http://en.wikipedia.org/wiki/Texas-sized">Texas</a>
-</h4>
-<p>Try to keep your classes bite-sized and with clearly-defined responsibilities. This can be <em>really</em>
-    hard as a program evolves.</p>
-<ul>
-    <li>texas imports</li>
-    <li>texas constructors: Can the class be cleanly broken apart?<br/> If not, consider builder
-        pattern.
-    </li>
-    <li>texas methods</li>
-</ul>
-<p>We could do some science and come up with a statistics-driven threshold for each of these, but it
-    probably wouldn't be very useful. This is usually just a gut instinct, and these are traits of
-    classes that are too large or complex and should be broken up.</p>
-<h4 id="avoid-typecasting">Avoid typecasting</h4>
-<p>Typecasting is a sign of poor class design, and can often be avoided. An obvious exception here
-    is overriding <a
-            href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)">equals</a>.
-</p>
-<h4 id="use-final-fields">Use final fields</h4>
-<p><em>See also <a href="#favor-immutability">favor immutability</a></em></p>
-<p>Final fields are useful because they declare that a field may not be reassigned. When it comes to
-    checking for thread-safety, a final field is one less thing that needs to be checked.</p>
-<h4 id="avoid-mutable-static-state">Avoid mutable static state</h4>
-<p>Mutable static state is rarely necessary, and causes loads of problems when present. A very
-    simple case that mutable static state complicates is unit testing. Since unit tests runs are
-    typically in a single VM, static state will persist through all test cases. In general, mutable
-    static state is a sign of poor class design.</p>
-<h4 id="exceptions">Exceptions</h4>
-<h5 id="catch-narrow-exceptions">Catch narrow exceptions</h5>
-<p>Sometimes when using try/catch blocks, it may be tempting to just <code>catch Exception</code>,
-    <code>Error</code>, or <code>Throwable</code> so you don't have to worry about what type was
-    thrown. This is usually a bad idea, as you can end up catching more than you really wanted to
-    deal with. For example, <code>catch Exception</code> would capture
-    <code>NullPointerException</code>, and <code>catch Throwable</code> would capture <code>OutOfMemoryError</code>.
-</p>
-<pre><code>
-Bad.
--If a RuntimeException happens, the program continues rather than aborting.
+        <h4 id="always-use-type-parameters">Always use type parameters</h4>
+        <p>Java 5 introduced support for <a
+                href="http://docs.oracle.com/javase/tutorial/java/generics/index.html">generics</a>.
+            This
+            added type parameters to collection types, and allowed users to implement their own
+            type-parameterized classes. Backwards compatibility and <a
+                    href="http://docs.oracle.com/javase/tutorial/java/generics/erasure.html">type
+                erasure</a> mean that type parameters are optional, however depending on usage they
+            do
+            result in compiler warnings.</p>
+        <p>We conventionally include type parameters on every declaration where the type is
+            parameterized.
+            Even if the type is unknown, it's preferable to include a wildcard or wide type.</p>
+        <h4 id="avoid-typecasting">Avoid typecasting</h4>
+        <p>Typecasting is a sign of poor class design, and can often be avoided. An obvious
+            exception here
+            is overriding <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)">equals</a>.
+        </p>
+        <h4 id="use-final-fields">Use final fields</h4>
+        <p><em>See also <a href="#favor-immutability">favor immutability</a></em></p>
+        <p>Final fields are useful because they declare that a field may not be reassigned. When it
+            comes to
+            checking for thread-safety, a final field is one less thing that needs to be
+            checked.</p>
+        <h4 id="avoid-mutable-static-state">Avoid mutable static state</h4>
+        <p>Mutable static state is rarely necessary, and causes loads of problems when present. A
+            very
+            simple case that mutable static state complicates is unit testing. Since unit tests runs
+            are
+            typically in a single VM, static state will persist through all test cases. In general,
+            mutable
+            static state is a sign of poor class design.</p>
+        <h3 id="exceptions">Exceptions</h3>
+        <h4 id="catch-narrow-exceptions">Catch narrow exceptions</h4>
+        <p>Sometimes when using try/catch blocks, it may be tempting to just <code>catch
+            Exception</code>,
+            <code>Error</code>, or <code>Throwable</code> so you don't have to worry about what type
+            was
+            thrown. This is usually a bad idea, as you can end up catching more than you really
+            wanted to
+            deal with. For example, <code>catch Exception</code> would capture
+            <code>NullPointerException</code>, and <code>catch Throwable</code> would capture <code>OutOfMemoryError</code>.
+        </p>
+        <pre><code>
+-> Bad.
+- If a RuntimeException happens, the program continues rather than aborting.
 try {
   storage.insertUser(user);
 } catch (Exception e) {
@@ -918,56 +975,62 @@ try {
 } catch (StorageException e) {
   LOG.error(&quot;Failed to insert user.&quot;);
 }</code></pre>
-<h5 id="dont-swallow-exceptions">Don't swallow exceptions</h5>
-<p>An empty <code>catch</code> block is usually a bad idea, as you have no signal of a problem.
-    Coupled with <a href="#catch-narrow-exceptions">narrow exception</a> violations, it's a recipe
-    for disaster.</p>
-<h5 id="when-interrupted-reset-thread-interrupted-state">When interrupted, reset thread interrupted
-    state</h5>
-<p>Many blocking operations throw <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/lang/InterruptedException.html">InterruptedException</a>
-    so that you may be awaken for events like a JVM shutdown. When catching <code>InterruptedException</code>,
-    it is good practice to ensure that the thread interrupted state is preserved.</p>
-<p>IBM has a good <a href="http://www.ibm.com/developerworks/java/library/j-jtp05236/index.html">article</a>
-    on this topic.</p>
-<pre><code>
-Bad.
--Surrounding code (or higher-level code) has no idea that the thread was interrupted.
+        <h4 id="dont-swallow-exceptions">Don't swallow exceptions</h4>
+        <p>An empty <code>catch</code> block is usually a bad idea, as you have no signal of a
+            problem.
+            Coupled with <a href="#catch-narrow-exceptions">narrow exception</a> violations, it's a
+            recipe
+            for disaster.</p>
+        <h4 id="when-interrupted-reset-thread-interrupted-state">When interrupted, reset thread
+            interrupted
+            state</h4>
+        <p>Many blocking operations throw <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/lang/InterruptedException.html">InterruptedException</a>
+            so that you may be awaken for events like a JVM shutdown. When catching <code>InterruptedException</code>,
+            it is good practice to ensure that the thread interrupted state is preserved.</p>
+        <p>IBM has a good <a
+                href="http://www.ibm.com/developerworks/java/library/j-jtp05236/index.html">article</a>
+            on this topic.</p>
+        <pre><code>
+-> Bad.
+- Surrounding code (or higher-level code) has no idea that the thread was interrupted.
 try {
   lock.tryLock(1L, TimeUnit.SECONDS)
 } catch (InterruptedException e) {
   LOG.info(&quot;Interrupted while doing x&quot;);
 }
 
-Good.
--Interrupted state is preserved.
+-> Good.
+- Interrupted state is preserved.
 try {
   lock.tryLock(1L, TimeUnit.SECONDS)
 } catch (InterruptedException e) {
   LOG.info(&quot;Interrupted while doing x&quot;);
   Thread.currentThread().interrupt();
 }</code></pre>
-<h5 id="throw-appropriate-exception-types">Throw appropriate exception types</h5>
-<p>Let your API users obey <a href="#catch-narrow-exceptions">catch narrow exceptions</a>, don't
-    throw Exception. Even if you are calling another naughty API that throws Exception, at least
-    hide that so it doesn't bubble up even further. You should also make an effort to hide
-    implementation details from your callers when it comes to exceptions.</p>
-<pre><code>
-Bad.
--Caller is forced to catch Exception, trapping many unnecessary types of issues.
+        <h4 id="throw-appropriate-exception-types">Throw appropriate exception types</h4>
+        <p>Let your API users obey <a href="#catch-narrow-exceptions">catch narrow exceptions</a>,
+            don't
+            throw Exception. Even if you are calling another naughty API that throws Exception, at
+            least
+            hide that so it doesn't bubble up even further. You should also make an effort to hide
+            implementation details from your callers when it comes to exceptions.</p>
+        <pre><code>
+-> Bad.
+- Caller is forced to catch Exception, trapping many unnecessary types of issues.
 interface DataStore {
   String fetchValue(String key) throws Exception;
 }
 
-Better.
--The interface leaks details about one specific implementation.
+-> Better.
+- The interface leaks details about one specific implementation.
 interface DataStore {
   String fetchValue(String key) throws SQLException, UnknownHostException;
 }
 
-Good.
--A custom exception type insulates the user from the implementation.
--Different implementations aren&#39;t forced to abuse irrelevant exception types.
+-> Good.
+- A custom exception type insulates the user from the implementation.
+- Different implementations aren&#39;t forced to abuse irrelevant exception types.
 interface DataStore {
   String fetchValue(String key) throws StorageException;
 
@@ -975,82 +1038,87 @@ interface DataStore {
     ...
   }
 }</code></pre>
-<h3 id="use-newerbetter-libraries">Use newer/better libraries</h3>
-<h4 id="stringbuilder-over-stringbuffer">StringBuilder over StringBuffer</h4>
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html">StringBuffer</a>
-    is thread-safe, which is rarely needed.</p>
-<h4 id="scheduledexecutorservice-over-timer">ScheduledExecutorService over Timer</h4>
-<p>Drawing from <a href="#recommended-reading">Java Concurrency in Practice</a> (directly borrowed
-    from a stackoverflow <a
-            href="http://stackoverflow.com/questions/409932/java-timer-vs-executorservice">question</a>).
-</p>
-<ul>
-    <li><p><code>Timer</code> can be sensitive to changes in the system clock, <code>ScheduledThreadPoolExecutor</code>
-        is not</p></li>
-    <li><p><code>Timer</code> has only one execution thread, so long-running task can delay other
-        tasks.</p></li>
-    <li><p><code>ScheduledThreadPoolExecutor</code> can be configured with multiple threads and a
-        <code>ThreadFactory</code><br/> <em>See <a href="#manage-threads-properly">manage threads
-            properly</a></em></p></li>
-    <li><p>Exceptions thrown in <code>TimerTask</code> kill the thread, rendering the
-        <code>Timer</code> ineffective.</p></li>
-    <li><p>ThreadPoolExecutor provides <code>afterExceute</code> so you can explicitly handle
-        execution results.</p></li>
-</ul>
-<h4 id="list-over-vector">List over Vector</h4>
-<p><code>Vector</code> is synchronized, which is often unneeded. When synchronization is desirable,
-    a
-    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#synchronizedList(java.util.List)">synchronized
-        list</a> can usually serve as a drop-in replacement for <code>Vector</code>.</p>
-<h3 id="equals-and-hashcode">equals() and hashCode()</h3>
-<p>If you override one, you must implement both. <em>See the equals/hashCode <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()">contract</a></em>
-</p>
-<p>
-    <a href="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Objects.html#equal(java.lang.Object,%20java.lang.Object)">Objects.equal()</a>
-    and <a
-        href="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/base/Objects.html#hashCode(java.lang.Object...)">Objects.hashCode()</a>
-    make it very easy to follow these contracts.</p>
-<h3 id="premature-optimization-is-the-root-of-all-evil.">Premature optimization is the root of all
-    evil.</h3>
-<p>Donald Knuth is a smart guy, and he had a few things to <a
-        href="http://c2.com/cgi/wiki?PrematureOptimization">say</a> on the topic.</p>
-<p>Unless you have strong evidence that an optimization is necessary, it's usually best to implement
-    the un-optimized version first (possibly leaving notes about where optimizations could be
-    made).</p>
-<p>So before you spend a week writing your memory-mapped compressed huffman-encoded hashmap, use the
-    stock stuff first and <em>measure</em>.</p>
-<h3 id="todos">TODOs</h3>
-<h4 id="leave-todos-early-and-often">Leave TODOs early and often</h4>
-<p>A TODO isn't a bad thing - it's signaling a future developer (possibly yourself) that a
-    consideration was made, but omitted for various reasons. It can also serve as a useful signal
-    when debugging.</p>
-<h4 id="leave-no-todo-unassigned">Leave no TODO unassigned</h4>
-<p>TODOs should have owners, otherwise they are unlikely to ever be resolved.</p>
-<pre><code>
-Bad.
--TODO is unassigned.
+        <h3 id="use-newerbetter-libraries">Use newer/better libraries</h3>
+        <h4 id="stringbuilder-over-stringbuffer">StringBuilder over StringBuffer</h4>
+        <p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html">StringBuffer</a>
+            is thread-safe, which is rarely needed.</p>
+        <h4 id="scheduledexecutorservice-over-timer">ScheduledExecutorService over Timer</h4>
+        <ul>
+            <li><p><code>Timer</code> can be sensitive to changes in the system clock, <code>ScheduledThreadPoolExecutor</code>
+                is not</p></li>
+            <li><p><code>Timer</code> has only one execution thread, so long-running task can delay
+                other
+                tasks.</p></li>
+            <li><p><code>ScheduledThreadPoolExecutor</code> can be configured with multiple threads
+                and a
+                <code>ThreadFactory</code><br/> <em>See <a href="#manage-threads-properly">manage
+                    threads
+                    properly</a></em></p></li>
+            <li><p>Exceptions thrown in <code>TimerTask</code> kill the thread, rendering the
+                <code>Timer</code> ineffective.</p></li>
+            <li><p>ThreadPoolExecutor provides <code>afterExceute</code> so you can explicitly
+                handle
+                execution results.</p></li>
+        </ul>
+        <h4 id="list-over-vector">List over Vector</h4>
+        <p><code>Vector</code> is synchronized, which is often unneeded. When synchronization is
+            desirable,
+            a
+            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#synchronizedList(java.util.List)">synchronized
+                list</a> can usually serve as a drop-in replacement for <code>Vector</code>.</p>
+        <h3 id="equals-and-hashcode">equals() and hashCode()</h3>
+        <p>If you override one, you must implement both. See the equals/hashCode <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()">contract</a>.
+        </p>
+        <h3 id="premature-optimization-is-the-root-of-all-evil">Premature optimization is the root
+            of all
+            evil.</h3>
+        <p>Donald Knuth is a smart guy, and he had a few things to <a
+                href="http://c2.com/cgi/wiki?PrematureOptimization">say</a> on the topic.</p>
+        <p>Unless you have strong evidence that an optimization is necessary, it's usually best to
+            implement
+            the un-optimized version first (possibly leaving notes about where optimizations could
+            be
+            made).</p>
+        <p>So before you spend a week writing your memory-mapped compressed huffman-encoded hashmap,
+            use the
+            stock stuff first and <em>measure</em>.</p>
+        <h3 id="todos">TODOs</h3>
+        <h4 id="leave-todos-early-and-often">Leave TODOs early and often</h4>
+        <p>A TODO isn't a bad thing - it's signaling a future developer (possibly yourself) that a
+            consideration was made, but omitted for various reasons. It can also serve as a useful
+            signal
+            when debugging.</p>
+        <h4 id="leave-no-todo-unassigned">Leave no TODO unassigned</h4>
+        <p>TODOs should have owners, otherwise they are unlikely to ever be resolved.</p>
+        <pre><code>
+-> Bad.
+- TODO is unassigned.
 TODO: Implement request backoff.
 
-Good.
+-> Good.
 TODO(George Washington): Implement request backoff.</code></pre>
-<h4 id="adopt-todos">Adopt TODOs</h4>
-<p>You should adopt an orphan if the owner has left the company/project, or if you make
-    modifications to the code directly related to the TODO topic.</p>
-<h3 id="obey-the-law-of-demeter-lod">Obey the Law of Demeter (<a
-        href="http://en.wikipedia.org/wiki/Law_of_Demeter">LoD</a>)</h3>
-<p>The Law of Demeter is most obviously violated by breaking the <a
-        href="http://en.wikipedia.org/wiki/Law_of_Demeter#In_object-oriented_programming">one dot
-    rule</a>, but there are other code structures that lead to violations of the spirit of the law.
-</p>
-<h4 id="in-classes">In classes</h4>
-<p>Take what you need, nothing more. This often relates to <a href="#stay-out-of-texas">texas
-    constructors</a> but it can also hide in constructors or methods that take few parameters. The
-    key idea is to defer assembly to the layers of the code that know enough to assemble and instead
-    just take the minimal interface you need to get your work done.</p>
-<pre><code>
-Bad.
--Weigher uses hosts and port only to immediately construct another object.
+        <h4 id="adopt-todos">Adopt TODOs</h4>
+        <p>You should adopt an orphan if the owner has left the company/project, or if you make
+            modifications to the code directly related to the TODO topic.</p>
+        <h3 id="obey-the-law-of-demeter-lod">Obey the Law of Demeter (<a
+                href="http://en.wikipedia.org/wiki/Law_of_Demeter">LoD</a>)</h3>
+        <p>The Law of Demeter is most obviously violated by breaking the <a
+                href="http://en.wikipedia.org/wiki/Law_of_Demeter#In_object-oriented_programming">one
+            dot
+            rule</a>, but there are other code structures that lead to violations of the spirit of
+            the law.
+        </p>
+        <h4 id="in-classes">In classes</h4>
+        <p>Take what you need, nothing more. This often relates to <a href="#stay-out-of-texas">texas
+            constructors</a> but it can also hide in constructors or methods that take few
+            parameters. The
+            key idea is to defer assembly to the layers of the code that know enough to assemble and
+            instead
+            just take the minimal interface you need to get your work done.</p>
+        <pre><code>
+-> Bad.
+- Weigher uses hosts and port only to immediately construct another object.
 class Weigher {
   private final double defaultInitialRate;
 
@@ -1060,7 +1128,7 @@ class Weigher {
   }
 }
 
-Good.
+-> Good.
 class Weigher {
   private final double defaultInitialRate;
 
@@ -1069,16 +1137,22 @@ class Weigher {
     this.weightingService = checkNotNull(weightingService);
   }
 }</code></pre>
-<p>If you want to provide a convenience constructor, a factory method or an external factory in the
-    form of a builder you still can, but by making the fundamental constructor of a Weigher only
-    take the things it actually uses it becomes easier to unit-test and adapt as the system
-    involves.</p>
-<h4 id="in-methods">In methods</h4>
-<p>If a method has multiple isolated blocks consider naming these blocks by extracting them to
-    helper methods that do just one thing. Besides making the calling sites read less like code and
-    more like english, the extracted sites are often easier to flow-analyse for human eyes. The
-    classic case is branched variable assignment. In the extreme, never do this:</p>
-<pre><code>
+        <p>If you want to provide a convenience constructor, a factory method or an external factory
+            in the
+            form of a builder you still can, but by making the fundamental constructor of a Weigher
+            only
+            take the things it actually uses it becomes easier to unit-test and adapt as the system
+            involves.</p>
+        <h4 id="in-methods">In methods</h4>
+        <p>If a method has multiple isolated blocks consider naming these blocks by extracting them
+            to
+            helper methods that do just one thing. Besides making the calling sites read less like
+            code and
+            more like english, the extracted sites are often easier to flow-analyse for human eyes.
+            The
+            classic case is branched variable assignment. In the extreme, never do this:</p>
+        <p>Instead of this:</p>
+        <pre><code>
 void calculate(Subject subject) {
   double weight;
   if (useWeightingService(subject)) {
@@ -1093,8 +1167,8 @@ void calculate(Subject subject) {
 
   Use weight here for further calculations
 }</code></pre>
-<p>Instead do this:</p>
-<pre><code>
+        <p>Do this:</p>
+        <pre><code>
 void calculate(Subject subject) {
   double weight = calculateWeight(subject);
 
@@ -1120,45 +1194,54 @@ private double fetchSubjectWeight(long subjectId) {
 private double currentDefaultRate() {
   defaultInitialRate * (1 + onlineLearnedBoost);
 }</code></pre>
-<p>A code reader that generally trusts methods do what they say can scan calculate quickly now and
-    drill down only to those methods where I want to learn more.</p>
-<h3 id="dont-repeat-yourself-dryhttpen.wikipedia.orgwikidont_repeat_yourself">Don't Repeat Yourself
-    ([DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself))</h3>
-<p>For a more long-winded discussion on this topic, read <a
-        href="http://c2.com/cgi/wiki?DontRepeatYourself">here</a>.</p>
-<h4 id="extract-constants-whenever-it-makes-sense">Extract constants whenever it makes sense</h4>
-<h4 id="centralize-duplicate-logic-in-utility-functions">Centralize duplicate logic in utility
-    functions</h4>
-<h3 id="manage-threads-properly">Manage threads properly</h3>
-<p>When spawning a thread, either directly or with a thread pool, you need to take special care that
-    you properly manage the lifecycle. Please familiarize yourself with the concept of daemon and
-    non-daemon threads (and their effect on the JVM lifecycle) by reading the documentation for <a
-            href="http://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html">Thread</a>.
-    Failing to understand these concepts can cause your application to hang at shutdown.</p>
-<p>Shutting down an <a
-        href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a>
-    properly is a slightly tricky process (see javadoc). If your code manages an executor service
-    with non-daemon threads, you need to follow this procedure. <a
-            href="[ExecutorService](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html)">ExecutorServiceShutdown</a>
-    very nicely contains this behavior for you.</p>
-<p>If you want to automatically perform cleanup like this when the VM is shutting down, consider
-    registering with <a
-            href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/application/ShutdownRegistry.java">ShutdownRegistry</a>.
-</p>
-<h3 id="avoid-unnecessary-code">Avoid unnecessary code</h3>
-<h4 id="superfluous-temporary-variables.">Superfluous temporary variables.</h4>
-<pre><code>
-Bad.
--The variable is immediately returned, and just serves to clutter the code.
+        <p>A code reader that generally trusts methods do what they say can scan calculate quickly
+            now and
+            drill down only to those methods where I want to learn more.</p>
+        <h3 id="dont-repeat-yourself-dryhttpen.wikipedia.orgwikidont_repeat_yourself">Don't Repeat
+            Yourself
+            <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">[DRY]</a></h3>
+        <p>For a more long-winded discussion on this topic, read <a
+                href="http://c2.com/cgi/wiki?DontRepeatYourself">here</a>.</p>
+        <h4 id="extract-constants-whenever-it-makes-sense">Extract constants whenever it makes
+            sense</h4>
+        <h4 id="centralize-duplicate-logic-in-utility-functions">Centralize duplicate logic in
+            utility
+            functions</h4>
+        <h3 id="manage-threads-properly">Manage threads properly</h3>
+        <p>When spawning a thread, either directly or with a thread pool, you need to take special
+            care that
+            you properly manage the lifecycle. Please familiarize yourself with the concept of
+            daemon and
+            non-daemon threads (and their effect on the JVM lifecycle) by reading the documentation
+            for <a
+                    href="http://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html">Thread</a>.
+            Failing to understand these concepts can cause your application to hang at shutdown.</p>
+        <p>Shutting down an <a
+                href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html">ExecutorService</a>
+            properly is a slightly tricky process (see javadoc). If your code manages an executor
+            service
+            with non-daemon threads, you need to follow this procedure. <a
+                    href="[ExecutorService](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html)">ExecutorServiceShutdown</a>
+            very nicely contains this behavior for you.</p>
+        <p>If you want to automatically perform cleanup like this when the VM is shutting down,
+            consider
+            registering with <a
+                    href="https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/application/ShutdownRegistry.java">ShutdownRegistry</a>.
+        </p>
+        <h3 id="avoid-unnecessary-code">Avoid unnecessary code</h3>
+        <h4 id="superfluous-temporary-variables.">Superfluous temporary variables.</h4>
+        <pre><code>
+-> Bad.
+- The variable is immediately returned, and just serves to clutter the code.
 List&lt;String&gt; strings = fetchStrings();
 return strings;
 
-Good.
+-> Good.
 return fetchStrings();</code></pre>
-<h4 id="unneeded-assignment.">Unneeded assignment.</h4>
-<pre><code>
-Bad.
--The null value is never realized.
+        <h4 id="unneeded-assignment.">Unneeded assignment.</h4>
+        <pre><code>
+-> Bad.
+- The null value is never realized.
 String value = null;
 try {
   value = &quot;The value is &quot; + parse(foo);
@@ -1166,17 +1249,15 @@ try {
   throw new IllegalStateException(e);
 }
 
-Good
+-> Good
 String value;
 try {
   value = &quot;The value is &quot; + parse(foo);
 } catch (BadException e) {
   throw new IllegalStateException(e);
 }</code></pre>
-<h3 id="the-fast-implementation">The 'fast' implementation</h3>
-<p>Don't bewilder your API users with a 'fast' or 'optimized' implementation of a method.</p>
-<pre><code>
-int fastAdd(Iterable&lt;Integer&gt; ints);
 
-Why would the caller ever use this when there&#39;s a &#39;fast&#39; add?
-int add(Iterable&lt;Integer&gt; ints);</code></pre>
+    </div>
+</div>
+</body>
+</html>
