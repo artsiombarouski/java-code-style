@@ -156,8 +156,7 @@ Indent size is 2 columns.
     public String downloadAnInternet(Internet internet,
                                      Tubes tubes,
                                      Blogosphere blogs,
-                                     Amount<Long,
-                                     Data> bandwidth) {
+                                     Amount<Long, Data> bandwidth) {
       tubes.download(internet);
       ...
     }
@@ -167,8 +166,7 @@ Indent size is 2 columns.
         Internet internet,
         Tubes tubes,
         Blogosphere blogs,
-        Amount<Long,
-        Data> bandwidth) {
+        Amount<Long, Data> bandwidth) {
 
       tubes.download(internet);
       ...
