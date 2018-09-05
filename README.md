@@ -296,7 +296,7 @@ naming suggests that a class is too complex and should be broken apart.
     -> Good.
     String value;
 
-#### Space pad operators and equals. {#space-pad-operators-and-equals}
+#### Space pad operators and equals.
 
     -> Bad.
     - This offers poor visual separation of operations.
@@ -1111,7 +1111,7 @@ can usually serve as a drop-in replacement for `Vector`.
 If you override one, you must implement both. See the equals/hashCode
 [contract](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()).
 
-### Premature optimization is the root of all evil. {#premature-optimization-is-the-root-of-all-evil}
+### Premature optimization is the root of all evil.
 
 Donald Knuth is a smart guy, and he had a few things to
 [say](http://c2.com/cgi/wiki?PrematureOptimization) on the topic.
@@ -1249,7 +1249,7 @@ A code reader that generally trusts methods do what they say can scan
 calculate quickly now and drill down only to those methods where I want
 to learn more.
 
-### Don't Repeat Yourself [[DRY]](http://en.wikipedia.org/wiki/Don't_repeat_yourself) {#dont-repeat-yourself-dryhttpen.wikipedia.orgwikidont_repeat_yourself}
+### Don't Repeat Yourself [[DRY]](http://en.wikipedia.org/wiki/Don't_repeat_yourself)
 
 For a more long-winded discussion on this topic, read
 [here](http://c2.com/cgi/wiki?DontRepeatYourself).
